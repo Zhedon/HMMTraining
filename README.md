@@ -1,5 +1,5 @@
 # HMMTraining
-This can be used to train HMM(for cut chinese sentence), generating three probability matrixes:start, transfer and emitter.The three matrixes are generate for "Jieba", in a word, they can be directly used as Python dict or list. 
+This can be used to train HMM(for cut chinese sentence), generating three probability matrixes:start, transfer and emitter.The three matrixes are generate for "Jieba", in a word, they can be directly used as Python dict or list. \r\n
 This project provides three methonds in TrainClass whose constructor need a String type arguement, this arguement is the path of training corpus. Three methods are:
   1.train_with_cutted()  for cutted corpus
   2.train_with_tagged()  if your corpus are tagged
