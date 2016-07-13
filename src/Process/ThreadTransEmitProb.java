@@ -68,6 +68,8 @@ public class ThreadTransEmitProb extends Thread {
 			while((temp = brStatus.readLine()) != null &&(source = brSource.readLine()) != null){		
 				int i,j;
 				if(temp.length()>0){
+					temp = temp.replace(" ", "");
+					source = source.replace(" ", "");
 				if(temp.charAt(0)=='B'){
 					addHashMap(source.charAt(0), mapB);
 				}
@@ -81,48 +83,49 @@ public class ThreadTransEmitProb extends Thread {
 					addHashMap(source.charAt(0), mapS);
 				}
 				for(i=1,j=1;i<temp.length()&&j<temp.length();i++,j++){
-					while(source.charAt(j)==' '){
+/*					while(source.charAt(j)==' '){
 						j++;
-					}
+						i++;
+					}*/
 					//System.out.println("Thread:" + name + ";Index:" + String.valueOf(i)+";Charactor:" + source.charAt(j));
 					
 					if(temp.charAt(i-1)=='B'){
 						PB++;
-						addHashMap(source.charAt(j), mapB);
+						addHashMap(source.charAt(j-1), mapB);
 						if(temp.charAt(i)=='E'){
 							Peb++;
 						}
-						else{
+						else if(temp.charAt(i) == 'M'){
 							Pmb++;
 						}
 					}
 					else if(temp.charAt(i-1)=='E'){
 						PE++;
-						addHashMap(source.charAt(j), mapE);
+						addHashMap(source.charAt(j-1), mapE);
 						if(temp.charAt(i)=='B'){
 							Pbe++;
 						}
-						else{
+						else if(temp.charAt(i)=='S'){
 							Pse++;
 						}
 					}
 					else if(temp.charAt(i-1)=='M'){
 						PM++;
-						addHashMap(source.charAt(j), mapM);
+						addHashMap(source.charAt(j-1), mapM);
 						if(temp.charAt(i)=='E'){
 							Pem++;
 						}
-						else{
+						else if(temp.charAt(i)=='M'){
 							Pmm++;
 						}
 					}
-					else{
+					else if(temp.charAt(i-1)=='S'){
 						PS++;
-						addHashMap(source.charAt(j), mapS);
+						addHashMap(source.charAt(j-1), mapS);
 						if(temp.charAt(i)=='B'){
 							Pbs++;
 						}
-						else{
+						else if(temp.charAt(i)=='S'){
 							Pss++;
 						}
 					}

@@ -102,8 +102,10 @@ public class ThreadStartProbSequence extends Thread{
 								}
 							}
 						}
-					}					
-				
+					}
+/*					else{
+						wstatus.write(temp.charAt(i));
+					}	*/
 				}
 				wstatus.write("\r\n");
 			}
