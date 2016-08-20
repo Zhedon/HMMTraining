@@ -50,16 +50,11 @@ public class TrainClass {
 		for(ThreadStartProbSequence thread:startthreadlist){
 			thread.start();
 		}
-		while(true){
-			boolean start_status = true;
-			for(ThreadStartProbSequence thread : startthreadlist){
-				start_status = start_status && thread.isFinished();
-			}
-			if(start_status == true){
-				System.out.println("All start prob and sequence finished...");
-				break;
-			}
+		
+		for(ThreadStartProbSequence thread : startthreadlist){
+			thread.join();
 		}
+
 		
 		long total=0l,total_B=0l,total_S=0l;
 		try{
@@ -104,16 +99,11 @@ public class TrainClass {
 			thread.start();
 		}
 		
-		while(true){
-			boolean transemit_status = true;
-			for(ThreadTransEmitProb thread : transemitthreadlist){
-				transemit_status = transemit_status && thread.isFinished();
-			}
-			if(transemit_status == true){
-				System.out.println("All trans prob and emit prob finished...");
-				break;
-			}
+
+		for(ThreadTransEmitProb thread : transemitthreadlist){
+			thread.join();
 		}
+		
 		try {
 			FileOutputStream emitout = new FileOutputStream( directory + "\\Result\\" + corpus_name + "_prob_emit.py");
 			OutputStreamWriter emitwriter = new OutputStreamWriter(emitout, "UTF-8");
@@ -193,16 +183,13 @@ public class TrainClass {
 		for(ThreadDetag thread : detagthreadlist){
 			thread.start();
 		}
-		while(true){
-			boolean detag_status = true;
-			for(ThreadDetag thread : detagthreadlist){
-				detag_status = detag_status && thread.isFinished();
-			}
-			if(detag_status == true){
-				System.out.println("All detag finished...");
-				break;
-			}
+	
+		for(ThreadDetag thread : detagthreadlist){
+			thread.join();
 		}
+			
+		System.out.println("All detag finished...");
+
 		this.directory = directory + "\\Detag";
 		train_with_cutted();
 		
@@ -227,16 +214,13 @@ public class TrainClass {
 		for(ThreadCut thread : cutthreadlist){
 			thread.start();
 		}
-		while(true){
-			boolean detag_status = true;
-			for(ThreadCut thread : cutthreadlist){
-				detag_status = detag_status && thread.isFinished();
-			}
-			if(detag_status == true){
-				System.out.println("All cut finished...");
-				break;
-			}
+		
+		for(ThreadCut thread : cutthreadlist){
+			thread.join();
 		}
+
+		System.out.println("All cut finished...");
+
 		this.directory = directory + "\\Cut";
 		train_with_cutted();
 			
